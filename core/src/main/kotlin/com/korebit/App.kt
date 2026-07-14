@@ -1,4 +1,5 @@
 package com.korebit
 
-class App {
+fun main() {
+    println("Hello Kore")
 }

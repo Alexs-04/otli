@@ -1,7 +1,9 @@
 package com.korebit;
 
+import com.korebit.content.WritheHeart;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, Korebit!");
+        WritheHeart.writhe();
     }
 }

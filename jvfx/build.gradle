@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClass = 'com.korebit.controller.TableViewApp'
+    mainClass = 'com.korebit.content.FilterListApp'
 }
 
 run {

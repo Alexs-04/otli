@@ -5,6 +5,9 @@
       <module name="core" target="21" />
       <module name="core.main" target="21" />
       <module name="core.test" target="21" />
+      <module name="jvfx" target="21" />
+      <module name="jvfx.main" target="21" />
+      <module name="jvfx.test" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

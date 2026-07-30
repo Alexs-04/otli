@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/core.iml" filepath="$PROJECT_DIR$/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jvfx.iml" filepath="$PROJECT_DIR$/jvfx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jvfx.main.iml" filepath="$PROJECT_DIR$/.idea/modules/jvfx.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jvfx.test.iml" filepath="$PROJECT_DIR$/.idea/modules/jvfx.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/otli.iml" filepath="$PROJECT_DIR$/otli.iml" />
     </modules>
   </component>

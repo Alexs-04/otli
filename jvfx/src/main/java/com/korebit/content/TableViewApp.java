@@ -69,35 +69,7 @@ public class TableViewApp extends Application {
         stage.show();
     }
 
-    public static class Item {
-        private String sku;
-        private String name;
-        private String description;
-        private Boolean tax;
-
-        public Item(String sku, String name, String description, boolean tax) {
-            this.sku = sku;
-            this.name = name;
-            this.description = description;
-            this.tax = tax;
-        }
-
-        public String getSku() {
-            return sku;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public Boolean isTax() {
-            return tax;
-        }
-    }
+    public record Item(String sku, String name, String description, Boolean tax) {}
 
     public static void main(String[] args) {
         launch(args);

@@ -13,4 +13,18 @@ public class GreetingResource {
     public String hello() {
         return "Hola desde Quarkus";
     }
+
+    @GET
+    @Path("/good-morning")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String goodMorning() {
+        return "Buenos días";
+    }
+
+    @GET
+    @Path("/good-night")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String goodNight() {
+        return "Buenas noches";
+    }
 }

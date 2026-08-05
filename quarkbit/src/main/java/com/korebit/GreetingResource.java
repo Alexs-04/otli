@@ -1,9 +1,9 @@
 package com.korebit;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.Optional;
 
 @Path("/hello")
 public class GreetingResource {
@@ -26,5 +26,19 @@ public class GreetingResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String goodNight() {
         return "Buenas noches";
+    }
+
+    @GET
+    @Path("/personalized")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello( @QueryParam("name") String name) {
+       return Optional.ofNullable(name).orElse("No estoy seguro de que me hayas hablado");
+    }
+
+    @GET
+    @Path("/{say-hello}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sayHello(@PathParam("say-hello") String name) {
+        return "Hello, " + name + "!";
     }
 }

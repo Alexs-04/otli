@@ -31,8 +31,8 @@ public class GreetingResource {
     @GET
     @Path("/personalized")
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello( @QueryParam("name") String name) {
-       return Optional.ofNullable(name).orElse("No estoy seguro de que me hayas hablado");
+    public String hello(@QueryParam("name") String name) {
+        return Optional.ofNullable(name).orElse("No estoy seguro de que me hayas hablado");
     }
 
     @GET

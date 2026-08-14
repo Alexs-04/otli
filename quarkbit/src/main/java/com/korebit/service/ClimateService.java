@@ -1,8 +1,8 @@
 package com.korebit.service;
 
 import com.korebit.dto.Climate;
-import com.korebit.dto.Response;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,7 @@ public class ClimateService {
 
     public Response addClimate(Climate climate) {
         climates.add(climate);
-        return Response.ok();
+        return Response.ok().build();
     }
 
     public List<Climate> getClimateList() {

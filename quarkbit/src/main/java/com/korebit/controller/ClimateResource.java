@@ -1,7 +1,7 @@
 package com.korebit.controller;
 
 import com.korebit.dto.Climate;
-import com.korebit.dto.Response;
+import jakarta.ws.rs.core.Response;
 import com.korebit.service.ClimateService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

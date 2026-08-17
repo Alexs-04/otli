@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/otli.iml" filepath="$PROJECT_DIR$/otli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/quarkbit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/quarkbit.main.iml" />
     </modules>
   </component>
 </project>

@@ -38,4 +38,18 @@ public class ClimateResource {
     public Response addClimate(Climate climate) {
         return climateService.addClimate(climate);
     }
+
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getClimates() {
+        return climateService.getClimates();
+    }
+
+    @GET
+    @Path("/find/{location}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Climate findByLocation(@PathParam("location") String location) {
+        return climateService.findByLocation(location);
+    }
 }

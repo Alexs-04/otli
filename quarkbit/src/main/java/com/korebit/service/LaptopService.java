@@ -4,6 +4,7 @@ import com.korebit.dto.LaptopAddRequest;
 import com.korebit.exception.LaptopNotFundException;
 import com.korebit.model.Laptop;
 import com.korebit.repository.LaptopRepository;
+import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
@@ -31,11 +32,12 @@ public class LaptopService {
                 .model(request.model())
                 .cpu(request.cpu())
                 .isTouchScreen(request.isTouchScreen())
+                .price(request.price())
                 .build();
 
         laptopRepository.persist(laptop);
 
-        return Response.ok().build();
+        return Response.status(Response.Status.CREATED).entity(request).build();
     }
 
     public Laptop getLaptop(Long laptopId) {
@@ -43,14 +45,28 @@ public class LaptopService {
                 .orElseThrow(() -> new LaptopNotFundException("Laptop whit id " + laptopId + " not found"));
     }
 
-    public void deleteLaptop(Long laptopId) {
+    public Response deleteLaptop(Long laptopId) {
         var laptop = laptopRepository.findByIdOptional(laptopId)
                 .orElseThrow(() -> new LaptopNotFundException("Laptop whit id " + laptopId + " not found"));
 
         laptopRepository.delete(laptop);
+        return Response.status(Response.Status.OK).build();
     }
 
     public List<Laptop> getLaptops() {
-        return laptopRepository.listAll();
+        return laptopRepository.listAll(Sort.by("price").ascending().and("name").ascending());
     }
+
+    public List<Laptop> getLenovoLaptops() {
+        return laptopRepository.list("trademark", "Lenovo");
+    }
+
+    public List<Laptop> getLaptopsByDescriptionOrModel(String description) {
+        String filter = "%" + description + "%";
+        return laptopRepository.list("model like ?1 or name like ?1", filter);
+    }
+
+//    public List<Laptop> getLaptopsByPriceRange(Double minPrice, Double maxPrice) {
+//        return laptopRepository.findByPriceRange(minPrice, maxPrice);
+//    }
 }

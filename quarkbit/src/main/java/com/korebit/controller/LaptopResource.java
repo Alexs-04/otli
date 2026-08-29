@@ -25,16 +25,16 @@ public class LaptopResource {
     }
 
     @GET
-    @Path("/{laptopId}")
+    @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
-    public Laptop getLaptop(@PathParam("laptopId") Long laptopId) {
+    public Laptop getLaptop(@QueryParam("laptopId") Long laptopId) {
         return laptopService.getLaptop(laptopId);
     }
 
     @DELETE
-    @Path("/{laptopId}")
-    public void deleteLaptop(@PathParam("laptopId") Long laptopId) {
-        laptopService.deleteLaptop(laptopId);
+    @Path("/delete")
+    public Response deleteLaptop(@QueryParam("laptopId") Long laptopId) {
+        return laptopService.deleteLaptop(laptopId);
     }
 
     @POST

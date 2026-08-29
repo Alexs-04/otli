@@ -8,5 +8,6 @@ public record LaptopAddRequest(
         Trademark trademark,
         String model,
         CPU cpu,
-        Boolean isTouchScreen
+        Boolean isTouchScreen,
+        Double price
 ) { }

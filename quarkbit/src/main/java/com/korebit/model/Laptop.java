@@ -7,12 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
+@Entity
+@Filter(name = "laptopFilter", condition = "is_touch_screen = :isTouchScreen")
+@FilterDef(name = "laptopFilter")
 public class Laptop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +34,6 @@ public class Laptop {
     private CPU cpu;
 
     private Boolean isTouchScreen;
+
+    private Double price;
 }

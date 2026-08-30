@@ -4,6 +4,8 @@ import com.korebit.dto.LaptopAddRequest;
 import com.korebit.exception.LaptopNotFundException;
 import com.korebit.model.Laptop;
 import com.korebit.repository.LaptopRepository;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -53,8 +55,11 @@ public class LaptopService {
         return Response.status(Response.Status.OK).build();
     }
 
-    public List<Laptop> getLaptops() {
-        return laptopRepository.listAll(Sort.by("price").ascending().and("name").ascending());
+    public PanacheQuery<Laptop> getLaptops(int pageNumber, int pageSize) {
+        Page page = Page.of(pageNumber, pageSize);
+        return laptopRepository
+                .findAll(Sort.by("price").ascending().and("name").ascending())
+                .page(page);
     }
 
     public List<Laptop> getLenovoLaptops() {
@@ -64,6 +69,10 @@ public class LaptopService {
     public List<Laptop> getLaptopsByDescriptionOrModel(String description) {
         String filter = "%" + description + "%";
         return laptopRepository.list("model like ?1 or name like ?1", filter);
+    }
+
+    public List<Laptop> getLaptopsByProcessorAndTrademark(String processor, String trademark) {
+        return laptopRepository.list("cpu = ?1 and trademark = ?2", processor, trademark);
     }
 
 //    public List<Laptop> getLaptopsByPriceRange(Double minPrice, Double maxPrice) {

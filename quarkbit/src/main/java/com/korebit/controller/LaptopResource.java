@@ -3,6 +3,7 @@ package com.korebit.controller;
 import com.korebit.dto.LaptopAddRequest;
 import com.korebit.model.Laptop;
 import com.korebit.service.LaptopService;
+import com.korebit.util.PaginatedResponse;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -20,8 +21,17 @@ public class LaptopResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Laptop> findAll() {
-        return laptopService.getLaptops();
+    public List<Laptop> findAll(@QueryParam("pageNumber") @DefaultValue("0") int pageNumber,
+                                @QueryParam("pageSize") @DefaultValue("5") int pageSize) {
+        return laptopService.getLaptops(pageNumber, pageSize).list();
+    }
+
+    @GET
+    @Path("/paginated")
+    @Produces(MediaType.APPLICATION_JSON)
+    public PaginatedResponse<Laptop> findPaginated(@QueryParam("pageNumber") @DefaultValue("0") int pageNumber,
+                                                   @QueryParam("pageSize") @DefaultValue("5") int pageSize) {
+        return new PaginatedResponse<>(laptopService.getLaptops(pageNumber, pageSize));
     }
 
     @GET

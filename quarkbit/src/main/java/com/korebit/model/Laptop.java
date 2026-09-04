@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ import org.hibernate.annotations.FilterDef;
 @Builder
 @Entity
 @Filter(name = "laptopFilter", condition = "is_touch_screen = :isTouchScreen")
-@FilterDef(name = "laptopFilter")
+@FilterDef(name = "laptopFilter", parameters = @ParamDef(name = "isTouchScreen", type = Boolean.class))
 public class Laptop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -75,7 +75,11 @@ public class LaptopService {
         return laptopRepository.list("cpu = ?1 and trademark = ?2", processor, trademark);
     }
 
-//    public List<Laptop> getLaptopsByPriceRange(Double minPrice, Double maxPrice) {
-//        return laptopRepository.findByPriceRange(minPrice, maxPrice);
-//    }
+    //TODO: Fix this method to use the new filter API instead of the deprecated one
+    @SuppressWarnings("deprecation")
+    public List<Laptop> getLaptopsIfIsTouchScreen(Boolean isTouchScreen) {
+        return laptopRepository.findAll()
+                .filter("laptopFilter", io.quarkus.panache.common.Parameters.with("isTouchScreen", isTouchScreen))
+                .list();
+    }
 }

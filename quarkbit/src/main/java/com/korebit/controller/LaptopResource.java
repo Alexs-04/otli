@@ -54,4 +54,25 @@ public class LaptopResource {
     public Response createLaptop(LaptopAddRequest request) {
         return laptopService.saveLaptop(request);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/lenovo")
+    public List<Laptop> getLenovoLaptops() {
+        return laptopService.getLenovoLaptops();
+    }
+
+    @GET
+    @Produces
+    @Path("/special")
+    public List<Laptop> getLaptopsByDescription(@QueryParam("description") String description) {
+        return laptopService.getLaptopsByDescriptionOrModel(description);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/special/mark/")
+    public List<Laptop> getLaptopsByTrademarkAndProcessor(@QueryParam("trademark") String trademark, @QueryParam("processor") String processor) {
+        return laptopService.getLaptopsByProcessorAndTrademark(processor, trademark);
+    }
 }

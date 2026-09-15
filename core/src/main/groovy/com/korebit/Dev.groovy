@@ -1,10 +1,12 @@
+package com.korebit
+
+import com.korebit.mapper.EmployeeMapper
+import com.korebit.model.Person
+import com.korebit.model.Student
+
 def x = 100
 print x //I don't know this form, it is very similar to Ruby
 
-class Person {
-    String name
-    int age
-}
 
 def personOne = new Person(name: "alex", age: 21)
 println personOne.name
@@ -22,9 +24,6 @@ persons.forEach { println it }
 
 println "Kotlin is $version"
 
-class Student extends Person {
-    int identifier
-}
 
 def students = [
         new Student(name: "Ana", age: 20, identifier: 1),
@@ -41,3 +40,5 @@ def adults = students.stream()
 adults.forEach { println it }
 
 println students.findAll { it.age >= 18 }.collect({ it.name })
+
+def any = EmployeeMapper.mapper('alex', 10, 19)

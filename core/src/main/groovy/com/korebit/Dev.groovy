@@ -42,3 +42,12 @@ adults.forEach { println it }
 println students.findAll { it.age >= 18 }.collect({ it.name })
 
 def any = EmployeeMapper.mapper('alex', 10, 19)
+
+int i = 0
+while (any) {
+    println any.name
+    i++
+    if (i >= 10) {
+        break
+    }
+}

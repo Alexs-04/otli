@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.korebit.quarkbit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.korebit.quarkbit.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/otli.iml" filepath="$PROJECT_DIR$/otli.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/quarkbit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/quarkbit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/quarkbit.test.iml" filepath="$PROJECT_DIR$/.idea/modules/quarkbit.test.iml" />
     </modules>
   </component>
 </project>

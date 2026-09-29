@@ -6,6 +6,7 @@ import com.korebit.service.LaptopService;
 import com.korebit.util.PaginatedResponse;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -44,15 +45,15 @@ public class LaptopResource {
     @DELETE
     @Path("/delete")
     public Response deleteLaptop(@QueryParam("laptopId") Long laptopId) {
-        return laptopService.deleteLaptop(laptopId);
+        return Response.status(Response.Status.OK).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/add")
-    public Response createLaptop(LaptopAddRequest request) {
-        return laptopService.saveLaptop(request);
+    public Response createLaptop(@Valid LaptopAddRequest request) {
+        return Response.status(Response.Status.CREATED).entity(request).build();
     }
 
     @GET

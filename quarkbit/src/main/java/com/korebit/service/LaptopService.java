@@ -9,6 +9,7 @@ import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityExistsException;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
@@ -22,10 +23,10 @@ public class LaptopService {
         this.laptopRepository = laptopRepository;
     }
 
-    public Response saveLaptop(LaptopAddRequest request) {
+    public Laptop saveLaptop(LaptopAddRequest request) {
         var existingLaptop = laptopRepository.findByName(request.name());
         if (existingLaptop.isPresent()) {
-            return Response.status(Response.Status.CONFLICT).build();
+            throw new EntityExistsException("Laptop already exists");
         }
 
         var laptop = Laptop.builder()
@@ -39,7 +40,7 @@ public class LaptopService {
 
         laptopRepository.persist(laptop);
 
-        return Response.status(Response.Status.CREATED).entity(request).build();
+        return laptop;
     }
 
     public Laptop getLaptop(Long laptopId) {
@@ -47,12 +48,12 @@ public class LaptopService {
                 .orElseThrow(() -> new LaptopNotFundException("Laptop whit id " + laptopId + " not found"));
     }
 
-    public Response deleteLaptop(Long laptopId) {
+    public boolean deleteLaptop(Long laptopId) {
         var laptop = laptopRepository.findByIdOptional(laptopId)
                 .orElseThrow(() -> new LaptopNotFundException("Laptop whit id " + laptopId + " not found"));
 
         laptopRepository.delete(laptop);
-        return Response.status(Response.Status.OK).build();
+        return true;
     }
 
     public PanacheQuery<Laptop> getLaptops(int pageNumber, int pageSize) {

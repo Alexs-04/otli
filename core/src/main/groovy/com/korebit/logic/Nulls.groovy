@@ -4,7 +4,7 @@ def describe(value) {
     if (value) {
         println "Válido"
     } else {
-        println "No Válido"
+        println "Valor vacío"
     }
 }
 
@@ -15,3 +15,21 @@ describe([])
 describe([1, 2, 3])
 describe(0)
 describe(42)
+
+def greet = {
+    println "any"
+}
+
+greet()
+
+def otherGreet = {
+    name -> "Hello $name"
+}
+
+println otherGreet("Alex")
+
+def square = { number ->
+    number * number
+}
+
+println square(3)

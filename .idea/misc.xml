@@ -4,6 +4,8 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/core" />
     <file type="web" url="file://$PROJECT_DIR$/jvfx" />
+    <file type="web" url="file://$PROJECT_DIR$/kbitor" />
+    <file type="web" url="file://$PROJECT_DIR$/kbitor-client" />
     <file type="web" url="file://$PROJECT_DIR$/quarkbit" />
   </component>
   <component name="ProjectRootManager" version="2">

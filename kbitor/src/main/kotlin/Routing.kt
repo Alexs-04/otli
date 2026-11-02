@@ -1,37 +1,56 @@
 package com.korebit
 
+import com.korebit.dto.CreateProductRequest
 import com.korebit.dto.Product
+import com.korebit.dto.ProductResponse
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.request.receive
 import io.ktor.server.response.*
+import io.ktor.server.response.respond
 import io.ktor.server.routing.*
 
 fun Application.configureRouting() {
     routing {
-        get("/") {
-            call.respondText("Hello, World!")
-        }
-        get("/json/kotlinx-serialization") {
-            call.respond(mapOf("hello" to "world"))
-        }
+        route("/api/products") {
+            get {
+                val active = call.request.queryParameters["active"]
+                    ?.toBooleanStrictOrNull()
 
-        get("/api/products"){
-            val list = listOf(
-                Product(1, "Soda", 20.10),
-                Product(2, "Milk", 10.10),
-                Product(3, "Cheese", 18.10))
+                val list = listOf(
+                    Product(1, "Soda", 20.10),
+                    Product(2, "Milk", 10.10),
+                    Product(3, "Cheese", 18.10)
+                )
 
-            call.respond(list)
-        }
+                call.respond(list)
+            }
 
-        post("/api/products") {
-            val product = call.receive<Product>()
+            post {
+                val product = call.receive<CreateProductRequest>()
+                val response = ProductResponse(
+                    10,
+                    product.name,
+                    product.price,
+                )
 
-            call.respond(
-                HttpStatusCode.Created,
-                product
-            )
+
+                call.respond(
+                    HttpStatusCode.Created,
+                    response
+                )
+            }
+
+            get("/{id}") {
+                val id = call.parameters["id"]?.toIntOrNull()
+
+                if (id == null) {
+                    call.respond(HttpStatusCode.BadRequest, "Invalid id")
+                    return@get
+                }
+
+                call.respondText { "Product: $id" }
+            }
         }
     }
 }

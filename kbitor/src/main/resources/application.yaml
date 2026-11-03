@@ -5,3 +5,4 @@ ktor:
     modules:
       - com.korebit.SerializationKt.configureSerialization
       - com.korebit.RoutingKt.configureRouting
+      - com.korebit.ApplicationKt.module

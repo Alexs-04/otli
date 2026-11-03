@@ -7,6 +7,7 @@ data class Product(
     val id: Int,
     val name: String,
     val price: Double,
+    val active : Boolean,
 )
 
 
@@ -22,3 +23,9 @@ data class ProductResponse(
     val name: String,
     val price: Double,
 )
+
+class ProductNotFoundException(id: Int) :
+    RuntimeException("Product with ID $id was not found")
+
+class InvalidProductException(message: String) :
+    RuntimeException(message)
